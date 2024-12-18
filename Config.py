@@ -2,17 +2,6 @@ import os
 from os import getenv, environ
 from dotenv import load_dotenv
 
-MULTI_TOKEN1 = ""
-MULTI_TOKEN2 = ""
-MULTI_TOKEN3 = ""
-MULTI_TOKEN4 = ""
-MULTI_TOKEN5 = ""
-MULTI_TOKEN6 = ""
-MULTI_TOKEN7 = ""
-MULTI_TOKEN8 = ""
-MULTI_TOKEN9 = ""
-MULTI_TOKEN10 = ""
-
 class Var(object):
     # Bot Information
     API_ID = int(getenv('API_ID', '21821499'))
@@ -27,8 +16,19 @@ class Var(object):
     # Users Information
     OWNER_ID = int(os.environ.get("OWNER_ID", "7158245271"))
     AUTH_USERS = [int(x) for x in os.environ.get("AUTH_USERS", "7158245271").split()]
+    
     MULTI_CLIENT = False
- 
+    MULTI_TOKEN1 = ""
+    MULTI_TOKEN2 = ""
+    MULTI_TOKEN3 = ""
+    MULTI_TOKEN4 = ""
+    MULTI_TOKEN5 = ""
+    MULTI_TOKEN6 = ""
+    MULTI_TOKEN7 = ""
+    MULTI_TOKEN8 = ""
+    MULTI_TOKEN9 = ""
+    MULTI_TOKEN10 = ""
+    
     # Server Information
     PORT = int(getenv('PORT', '8080'))
     NO_PORT = bool(getenv('NO_PORT', False))
