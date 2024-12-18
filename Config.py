@@ -22,10 +22,8 @@ class Var(object):
 
     #Channel Information
     BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002124078334'))
-    NEW_USER_LOG = int(getenv('NEW_USER_LOG', '-1002124078334'))
     LOG_CHANNEL = int(getenv('LOG_CHANNEL', '-1002124078334'))
-    AUTH_CHATS = [int(x) for x in os.environ.get("AUTH_CHATS", "-1001552487156 -1002099487331 -1002430448290").split()]
-
+    
     # Users Information
     OWNER_ID = int(os.environ.get("OWNER_ID", "5591007272"))
     AUTH_USERS = [int(x) for x in os.environ.get("AUTH_USERS", "6675573927 1001581247 1303394531 607305878 854128672 5514721611 1110489315 1487388920 1092476790 5329521369 1356815354").split()]
