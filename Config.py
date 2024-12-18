@@ -15,26 +15,31 @@ MULTI_TOKEN10 = ""
 
 class Var(object):
     # Bot Information
-    API_ID = int(getenv('API_ID', '21879629'))
-    API_HASH = str(getenv('API_HASH', 'dcb6bfd6d51a8ff5f6aadb01b9fdd11b'))
-    BOT_TOKEN = str(getenv('BOT_TOKEN' , '6858868230:AAHnIIjfFIpIs5Y4TeACU7K6uO2oA7zj-pw'))
+    API_ID = int(getenv('API_ID', '21821499'))
+    API_HASH = str(getenv('API_HASH', '31eda964c848701b76931b1a5446f301'))
+    BOT_TOKEN = str(getenv('BOT_TOKEN' , '7631945627:AAH6N63eYDSjCf_-lR6lSMEiBoYURQPBnDg'))
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
 
     #Channel Information
-    BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002124078334'))
-    LOG_CHANNEL = int(getenv('LOG_CHANNEL', '-1002124078334'))
+    BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002464183743'))
+    LOG_CHANNEL = int(getenv('LOG_CHANNEL', '-1002464183743'))
     
     # Users Information
-    OWNER_ID = int(os.environ.get("OWNER_ID", "5591007272"))
-    AUTH_USERS = [int(x) for x in os.environ.get("AUTH_USERS", "6675573927 1001581247 1303394531 607305878 854128672 5514721611 1110489315 1487388920 1092476790 5329521369 1356815354").split()]
+    OWNER_ID = int(os.environ.get("OWNER_ID", "7158245271"))
+    AUTH_USERS = [int(x) for x in os.environ.get("AUTH_USERS", "7158245271").split()]
     MULTI_CLIENT = True
  
     # Server Information
     PORT = int(getenv('PORT', '8080'))
     NO_PORT = bool(getenv('NO_PORT', False))
-    BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '195.154.182.71'))
+    BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
     IF_DM = True
-    FQDN = getenv('FQDN', '195.154.182.71:8080') if IF_DM else getenv('BIND_ADDRESS', '195.154.182.71:8080')
+    if 'DYNO' in environ:
+        ON_HEROKU = True
+        APP_NAME = str(environ.get('APP_NAME', 'vortexstreambot-80bf2539e62a'))
+    else:
+        ON_HEROKU = False
+    FQDN = (str(environ.get('FQDN', f'{BIND_ADDRESS}:{PORT}')) if not ON_HEROKU or environ.get('FQDN', '') else f"{APP_NAME}.herokuapp.com")
     HAS_SSL = bool(getenv('HAS_SSL', 'False'))
     if HAS_SSL:
         URL = "http://{}/".format(FQDN)
