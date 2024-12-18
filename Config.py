@@ -17,7 +17,7 @@ class Var(object):
     OWNER_ID = int(os.environ.get("OWNER_ID", "7158245271"))
     AUTH_USERS = [int(x) for x in os.environ.get("AUTH_USERS", "7158245271").split()]
     
-    MULTI_CLIENT = False
+    MULTI_CLIENT = True
     MULTI_TOKEN1 = ""
     MULTI_TOKEN2 = ""
     MULTI_TOKEN3 = ""
