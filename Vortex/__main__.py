@@ -15,6 +15,7 @@ from Vortex.bot import StreamBot
 from pyrogram.raw.all import layer
 from datetime import date, datetime
 from Vortex.server import web_server
+from pyrogram import Client, __version__
 from Vortex.bot.clients import initialize_clients
 
 logging.basicConfig(level=logging.INFO,format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
