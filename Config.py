@@ -10,8 +10,8 @@ class Var(object):
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
 
     #Channel Information
-    BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002464183743'))
-    LOG_CHANNEL = int(getenv('LOG_CHANNEL', '-1002464183743'))
+    BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002456127266'))
+    LOG_CHANNEL = int(getenv('LOG_CHANNEL', '-1002456127266'))
     
     # Users Information
     OWNER_ID = int(os.environ.get("OWNER_ID", "7158245271"))
