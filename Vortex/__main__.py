@@ -12,50 +12,27 @@ from aiohttp import web
 from Vortex.server import web_server
 from Vortex.bot.clients import initialize_clients
 
-LOGO = """
-██╗   ██╗ ██████╗ ██████╗ ████████╗███████╗██╗  ██╗
-██║   ██║██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝╚██╗██╔╝
-██║   ██║██║   ██║██████╔╝   ██║   █████╗   ╚███╔╝ 
-╚██╗ ██╔╝██║   ██║██╔══██╗   ██║   ██╔══╝   ██╔██╗ 
- ╚████╔╝ ╚██████╔╝██║  ██║   ██║   ███████╗██╔╝ ██╗
-  ╚═══╝   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝"""
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO,format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logging.getLogger("aiohttp").setLevel(logging.ERROR)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
+
 StreamBot.start()
 loop = asyncio.get_event_loop()
 
-
 async def start_services():
-    print('\n')
-    print('------------------- Initalizing Telegram Bot -------------------')
     bot_info = await StreamBot.get_me()
     StreamBot.username = bot_info.username
-    print("------------------------------ DONE ------------------------------")
-    print()
-    print("---------------------- Initializing Clients ----------------------")
     await initialize_clients()
-    print("------------------------------ DONE ------------------------------")
-    print('\n')
-    print('-------------------- Initalizing Web Server -------------------------')
     app = web.AppRunner(await web_server())
     await app.setup()
-    bind_address = Var.BIND_ADRESS
+    bind_address = "0.0.0.0" if Var.ON_HEROKU else Var.BIND_ADRESS
     await web.TCPSite(app, bind_address, Var.PORT).start()
-    print('----------------------------- DONE ---------------------------------------------------------------------')
-    print('\n')
-    print("-----------------------------------------------------------------------------------------")
-    await StreamBot.send_message(chat_id=Var.LOG_CHANNEL, text="ʙᴏᴛ ʀᴇsᴛᴀʀᴛᴇᴅ ✅")
-    print('----------------------------- Log Message Sent --------------------------------------------------------------')
-    print('\n')
-    print("-----------------------------------------------------------------------------------------")
-    print('\n')
-    print(LOGO) 
+    curr = datetime.now(timezone("Asia/Kolkata"))
+    date = curr.strftime('%d %B, %Y')
+    time = curr.strftime('%I:%M:%S %p')
+    await StreamBot.send_message(Var.LOG_CHANNEL, f"<b>{bot_info.mention} ɪs ʀᴇsᴛᴀʀᴛᴇᴅ !!\n\n<blockquote>⏰ ᴅᴀᴛᴇ : `{date}`\n📅 ᴛɪᴍᴇ : `{time}`\n🌐 ᴛɪᴍᴇᴢᴏɴᴇ : `Aisa/Kolkata`\n\n🉐 ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : `V{__version__}`\n📌 ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : `V3.13.1`</blockquote></b>")  
+    print(f"Vortex Stream Bot Started......⚡️⚡️⚡️")
     await idle()
 
 if __name__ == '__main__':
