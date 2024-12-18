@@ -1,6 +1,7 @@
+https://codeload.github.com/SriCoolXd/Pyrogram/zip/refs/heads/Vortex
 tgcrypto
 aiohttp
-python-dotenv<=0.20.0
+python-dotenv
 motor
 datetime
 pytz
