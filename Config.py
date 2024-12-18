@@ -27,7 +27,7 @@ class Var(object):
     # Users Information
     OWNER_ID = int(os.environ.get("OWNER_ID", "7158245271"))
     AUTH_USERS = [int(x) for x in os.environ.get("AUTH_USERS", "7158245271").split()]
-    MULTI_CLIENT = True
+    MULTI_CLIENT = False
  
     # Server Information
     PORT = int(getenv('PORT', '8080'))
