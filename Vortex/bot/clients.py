@@ -27,9 +27,6 @@ async def initialize_clients():
         multi_clients[0] = StreamBot
         work_loads[0] = 0
         print("Multi-client is off, continuing with default client")
-    clients = await asyncio.gather(*[start_client(i, token) for i, token in all_tokens.items()])
-
-
         
     async def start_client(client_id, token):
         try:
@@ -50,9 +47,10 @@ async def initialize_clients():
             return client_id, client
         except Exception:
             logging.error(f"Failed starting Client - {client_id} Error:", exc_info=True)
-    
+            
     clients = await asyncio.gather(*[start_client(i, token) for i, token in all_tokens.items()])
     multi_clients.update(dict(clients))
+    
     if len(multi_clients) != 1:
         Var.MULTI_CLIENT = True
         print("Multi-Client Mode Enabled")
