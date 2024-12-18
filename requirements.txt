@@ -1,0 +1,14 @@
+tgcrypto
+aiohttp
+python-dotenv<=0.20.0
+motor
+datetime
+pytz
+aiofiles
+dnspython
+apscheduler
+requests
+psutil
+pyromod
+colorama
+jinja2
