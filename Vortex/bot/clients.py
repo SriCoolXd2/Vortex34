@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from Config import Var
-from config import *
+from Config import *
 from pyrogram import Client
 from . import multi_clients, work_loads, StreamBot
 
