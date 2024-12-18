@@ -6,17 +6,30 @@ from pyrogram import Client
 from . import multi_clients, work_loads, StreamBot
 
 async def initialize_clients():
-    if Var.MULTI_CLIENT:
-        all_tokens = {c + 1: t for c, (_, t) in enumerate(filter(lambda n: n[0].startswith("MULTI_TOKEN"), os.environ.items()))}
-        if not all_tokens:
-            multi_clients[0] = FileStream
-            work_loads[0] = 0
-            print("No additional clients found, using default client")
-            return
+    all_tokens = {
+        1: Var.MULTI_TOKEN1,
+        2: Var.MULTI_TOKEN2,
+        3: Var.MULTI_TOKEN3,
+        4: Var.MULTI_TOKEN4,
+        5: Var.MULTI_TOKEN5,
+        6: Var.MULTI_TOKEN6,
+        7: Var.MULTI_TOKEN7,
+        8: Var.MULTI_TOKEN8,
+        9: Var.MULTI_TOKEN9,
+        10: Var.MULTI_TOKEN10
+    }
+    if not all_tokens:
+        multi_clients[0] = FileStream
+        work_loads[0] = 0
+        print("No additional clients found, using default client")
+        return
     else:
         multi_clients[0] = StreamBot
         work_loads[0] = 0
         print("Multi-client is off, continuing with default client")
+    clients = await asyncio.gather(*[start_client(i, token) for i, token in all_tokens.items()])
+
+
         
     async def start_client(client_id, token):
         try:
